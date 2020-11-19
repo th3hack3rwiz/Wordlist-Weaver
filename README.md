@@ -1,7 +1,7 @@
 ![](https://th3hack3rwiz.github.io/images/Wordlist-Weaver/banner.PNG)
 ## Wordlist-Weaver
 
-This project aims at crafting a target-specific wordlists. 
+This project aims at crafting target-specific wordlists. 
 
 ## Installation
 
