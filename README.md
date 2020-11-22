@@ -23,7 +23,7 @@ This project aims at crafting target-specific wordlists.
 ## Instructions
 
 1. Install all the tools and make sure all of them are ready to use from the terminal. 
-2. Once rfc-words file is ready, add it’s path to line No. 55 of wordlistWeaver.sh
+2. Once rfc-words file is ready, add it’s path to line No. 109 of wordlistWeaver.sh
 3. wordlistWeaver.sh is now ready to use!
 
 ## Usage
