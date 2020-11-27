@@ -23,7 +23,7 @@ This project aims at crafting target-specific wordlists.
 ## Instructions
 
 1. Install all the tools and make sure all of them are ready to use from the terminal. 
-2. Once rfc-words file is ready, add it’s path to line No. 109 of wordlistWeaver.sh
+2. Once rfc-words file is ready, add it’s path to line No. 119 of wordlistWeaver.sh!
 3. wordlistWeaver.sh is now ready to use!
 
 ## Usage
@@ -36,7 +36,40 @@ This project aims at crafting target-specific wordlists.
 
 ## Sample Usage
 
-![](https://th3hack3rwiz.github.io/images/Wordlist-Weaver/result.PNG)
+##### Different Usage Scenarios:
+
+1. In the following example, Wordlist-Weaver gathers the URLs of the target and generates paths, parameters and, generic-words wordlists.
+
+![](https://th3hack3rwiz.github.io/images/Wordlist-Weaver/default_use.PNG)
+
+2. If you have a list of URLs gathered (from your Burp Suite / other tools) and want to use that file to skip gathering URLs and to craft paths and parameters wordlists, you can use “-U” flag followed by the file containing the URLs of the target domain/sub-domain.
+
+![](https://th3hack3rwiz.github.io/images/Wordlist-Weaver/-U.PNG)
+
+3. If you want to fetch the generic-words from a path on the target domain itself. You can use “-p” flag for the same, followed by the relative path. 
+    Eg: To fetch generic-words from https://target-domain.com/home we can do:
+
+![](https://th3hack3rwiz.github.io/images/Wordlist-Weaver/-p1.PNG)
+
+4. If you want to generate the generic-words from some specific path of the target domain/sub-domain, you can use the “-p” flag followed by the URL of your desired path on the target domain/sub-domain. 
+
+![](https://th3hack3rwiz.github.io/images/Wordlist-Weaver/-p2.PNG)
+
+5. If you want to fetch the generic-words from multiple juicy paths (URLs) of your target’s domain/sub-domains. You can use the “-P” flag followed by the file containing the list of path URLs.
+
+​       For Eg: If I want to fetch the generic words from the following list of paths (URLs):
+
+![](https://th3hack3rwiz.github.io/images/Wordlist-Weaver/paths.PNG)
+
+![](https://th3hack3rwiz.github.io/images/Wordlist-Weaver/-P.PNG)
+
+6. If you wish to explicitly gather the URLs of the sub-domains that you have discovered of your target, then you can use the “-S” flag followed by the file containing a list of sub-domains.
+
+   Eg: If I want to gather the URLs of the following subdomains:
+
+![](https://th3hack3rwiz.github.io/images/Wordlist-Weaver/subdomains.PNG)
+
+![](https://th3hack3rwiz.github.io/images/Wordlist-Weaver/-S.PNG)
 
 ## Explained Output
 
