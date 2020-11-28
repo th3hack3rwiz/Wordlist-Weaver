@@ -7,7 +7,7 @@ This project aims at crafting target-specific wordlists.
 
 1. Clone the repository :  git clone https://github.com/th3hack3rwiz/Wordlist-Weaver.git
 2. cd Wordlist-Weaver ; chmod +x wordlistWeaver.sh ; chmod +x setup.sh
-3. If you have your GOPATH set, simply run ./setup.sh
+3. If you have your GOPATH set, simply run ./setup.sh to install all the tools and prepare rfc-words file.
 
 ## Requirements
 
