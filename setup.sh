@@ -1,5 +1,6 @@
 GREEN='\e[38;5;149m'
 GOLD='\e[38;5;226m'
+GO111MODULE=on go get -u -v github.com/lc/gau
 git clone https://github.com/tomnomnom/hacks 
 cd hacks/tok
 echo -e "${GREEN}[+] Building tok"
@@ -18,7 +19,6 @@ echo -e "${GREEN}[+] Building waybackurls"
 go build
 cp waybackurls $(echo $GOPATH)/bin/waybackurls
 echo -e "${GREEN}[+] Installing gau"
-GO111MODULE=on go get -u -v github.com/lc/gau
 cd ../../
 curl https://tools.ietf.org/html/rfc1866 -o rfc.html
 cat rfc.html | tok | tr '[[:upper:]]' '[[:lower:]]' | sort -u > rfc-words
