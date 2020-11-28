@@ -23,9 +23,9 @@ function usage()
 	echo -e " ${ORANGE}${BOLD} 	  Eg: ${GREEN}${BOLD}./wordlistWeaver.sh -p https://xyz.example.com/some/path/on/xyz example.com -> will fetch words from that subdomain URL\n"
 	echo -e " ${ORANGE}-P : ${GREY}to specify a list of paths (URLs) of the target domain/sub-domain to grab generic-words. (Default path:\"/\" i.e https://target-domain/)" 
 	echo -e " ${ORANGE}${BOLD}\n 	  Eg: ${GREEN}${BOLD}./wordlistWeaver.sh -P example.com_paths.txt example.com\n"
-	echo -e "${ORANGE} -U : ${GREY}to specify a file containing URLs of the target to avoid fetching them."
+	echo -e "${ORANGE} -U : ${GREY}to specify a list of URLs of the target to avoid fetching them."
 	echo -e " ${ORANGE}${BOLD}\n 	  Eg: ${GREEN}${BOLD}./wordlistWeaver.sh -U example.com_urls.txt -p /some/specific/path/ example.com\n"
-	echo -e "${ORANGE} -S : ${GREY}to specify a file containing subdomains of the target to fetch their URLs explicitely."
+	echo -e "${ORANGE} -S : ${GREY}to specify a list of sub-domains of the target to fetch their URLs explicitely."
 	echo -e " ${ORANGE}${BOLD}\n 	  Eg: ${GREEN}${BOLD}./wordlistWeaver.sh -S example.com_subdomains.txt -p /some/specific/path/ example.com\n"
 	echo -e "${ORANGE} -h : ${GREY}to display usage."
 	echo -e "${OFFWHITE}\n[+] IMPORTANT: Flags must be written before the target-domain name"
@@ -61,6 +61,12 @@ else
  	if [[ $urlflag -eq 1 && $subflag -eq 0 ]] ; then
  		cat $urlfile | anew -q ${1}.urls
  	elif [[ $subflag -eq 1 && $urlflag -eq 0 ]] ; then
+ 		cat $subfile | grep http > /dev/null
+		if [[ $? -eq 0 ]] ; then
+			cat $subfile | awk -F/ '{print $3}' | sed 's/\/$//g' | awk -F. '{print $1}' | anew -q ${1}.paths-wordlist.txt
+		else
+			cat $subfile | awk -F. '{print $1}' | anew -q ${1}.paths-wordlist.txt
+		fi
  		echo -e "${GREY}[+] Gathering URLs for *.${1}"
 	 	gau -subs ${1} | anew -q ${1}.urls & waybackurls ${1} | anew -q ${1}.urls
 	 	wait
@@ -73,6 +79,12 @@ else
 		printf "\n"
  	elif [[ $urlflag -eq 1 && $subflag -eq 1 ]] ; then
  		cat $urlfile | anew -q ${1}.urls
+ 		cat $subfile | grep http > /dev/null
+		if [[ $? -eq 0 ]] ; then
+			cat $subfile | awk -F/ '{print $3}' | sed 's/\/$//g' | awk -F. '{print $1}' | anew -q ${1}.paths-wordlist.txt
+		else
+			cat $subfile | awk -F. '{print $1}' | anew -q ${1}.paths-wordlist.txt
+		fi
  		echo -e "${GREY}[+] Gathering URLs for *.${1}"
 	 	gau -subs ${1} | anew -q ${1}.urls & waybackurls ${1} | anew -q ${1}.urls
 	 	wait
