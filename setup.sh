@@ -1,7 +1,12 @@
-GREEN='\e[38;5;149m'
+BOLD='\e[1m'
 GOLD='\e[38;5;226m'
-GO111MODULE=on go get -u -v github.com/lc/gau 
-git clone https://github.com/tomnomnom/hacks 
+GREY='\033[0;37m'
+GREEN='\e[38;5;149m'
+echo -e "${GREY}${BOLD}$(figlet -t -f slant Welcome to)" ; echo -e "${GOLD}${BOLD}$(figlet -t -f script Wordlist-Weaver!)"
+echo -e "\033[0;37m\e[1m\t\t\t\t\t\t  ${GREY}${BOLD}© Created By: th3hack3rwiz\n"
+echo -e "${GREEN}[+] Building gau"
+GO111MODULE=on go get -u -v github.com/lc/gau > /dev/null 2>&1
+git clone https://github.com/tomnomnom/hacks > /dev/null 2>&1
 cd hacks/tok
 echo -e "${GREEN}[+] Building tok"
 go build
@@ -16,11 +21,11 @@ cd ../waybackurls
 echo -e "${GREEN}[+] Building waybackurls"
 go build
 cp waybackurls $(echo $GOPATH)/bin/waybackurls
-echo -e "${GREEN}[+] Installing gau"
 cd ../../
-curl https://tools.ietf.org/html/rfc1866 -o rfc.html
+echo -e "${GREEN}[+] Preparing rfc-words\n"
+curl https://tools.ietf.org/html/rfc1866 -o rfc.html > /dev/null 2>&1
 cat rfc.html | tok | tr '[[:upper:]]' '[[:lower:]]' | sort -u > rfc-words
 rm rfc.html
 printf "\n"
 echo -e "${GOLD}$(pwd)/rfc-words"
-echo -e "${GOLD}[+] Now add the above path ^ of rfc-words' to wordlistWeaver.sh: Line number -> 131"
+echo -e "${GREY}[+] [IMPORTANT] Now add the above path ^ of rfc-words' to http://wordlistWeaver.sh: Line number -> 131"
