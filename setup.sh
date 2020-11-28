@@ -1,6 +1,6 @@
 GREEN='\e[38;5;149m'
 GOLD='\e[38;5;226m'
-GO111MODULE=on go get -u -v github.com/lc/gau
+GO111MODULE=on go get -u -v github.com/lc/gau 
 git clone https://github.com/tomnomnom/hacks 
 cd hacks/tok
 echo -e "${GREEN}[+] Building tok"
@@ -23,4 +23,4 @@ cat rfc.html | tok | tr '[[:upper:]]' '[[:lower:]]' | sort -u > rfc-words
 rm rfc.html
 printf "\n"
 echo -e "${GOLD}$(pwd)/rfc-words"
-echo -e "${GREEN}[+] Now add the above path ^ of rfc-words' to wordlistWeaver.sh: Line number -> 131"
+echo -e "${GOLD}[+] Now add the above path ^ of rfc-words' to wordlistWeaver.sh: Line number -> 131"
