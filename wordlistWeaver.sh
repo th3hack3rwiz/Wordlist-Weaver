@@ -102,10 +102,10 @@ else
 	 	cat ${1}.urls | sort -u > buff ; cat buff > ${1}.urls ; rm buff;
 	fi
  	echo -e "${ORANGE}[+] Finding paths on ${1}....."
- 	cat ${1}.urls | unfurl -u paths| sed 's#/#\n#g' | sort -u | grep ... | grep -Ev "%|\-\-|[[:lower:]]+-[[:lower:]]+-[[:lower:]]+|^[[:digit:]]+|^-|^_|^-[[:digit:]]|^[[:lower:]]+[[:upper:]]|.*,.*|[[:upper:]]+[[:lower:]]+[[:upper:]]+|_|[[:upper:]]+[[:digit:]]+|[[:lower:]]+[[:digit:]][[:digit:]]+[[:lower:]]*|[[:upper:]]+[[:digit:]][[:digit:]]+[[:lower:]]*|[[:alpha:]]+-[[:alpha:]]+-|^[[:digit:]]+|\.html$|==$|\.png$|\.jpg$|\.css$|\.gif$|\.pdf$|\.js$|\.jpeg$|\.tif$|\.tiff$|\.ttf$|\.woff$|\.woff2$|\.ico$|\.svg$|\.txt$" | anew -q ${1}.paths-wordlist.txt
+ 	cat ${1}.urls | unfurl -u paths| sed 's#/#\n#g' | sort -u | grep ... | grep -Ev "%|\-\-|[[:lower:]]+-[[:lower:]]+-[[:lower:]]+|^[[:digit:]]+|^-|^_|^-[[:digit:]]|^[[:lower:]]+[[:upper:]]|.*,.*|[[:upper:]]+[[:lower:]]+[[:upper:]]+|_|[[:upper:]]+[[:digit:]]+|[[:lower:]]+[[:digit:]][[:digit:]]+[[:lower:]]*|[[:upper:]]+[[:digit:]][[:digit:]]+[[:lower:]]*|[[:alpha:]]+-[[:alpha:]]+-|@|^[[:digit:]]+|\.html$|==$|\.png$|\.jpg$|\.css$|\.gif$|\.pdf$|\.js$|\.jpeg$|\.tif$|\.tiff$|\.ttf$|\.woff$|\.woff2$|\.ico$|\.svg$|\.txt$" | anew -q ${1}.paths-wordlist.txt
  	echo -e "${GREEN}[+] $(cat ${1}.paths-wordlist.txt| wc -l) Paths obtained! :D"
  	echo -e "${ORANGE}\n[+] Finding parameters on ${1}....."
- 	cat ${1}.urls | unfurl -u keys | grep -Ev "^[[:digit:]]+" | anew -q ${1}.parameters-wordlist.txt
+ 	cat ${1}.urls | unfurl -u keys | sed 's/^[[:space:]]*//g' | grep -Ev "^[[:digit:]]+|,|^\.|\||]|[|.*[[:space:]].*" | anew -q ${1}.parameters-wordlist.txt
  	echo -e "${GREEN}[+] $(cat ${1}.parameters-wordlist.txt| wc -l) Parameters obtained! :D" 
  	printf "\n"
 	if [[ $pflag -eq 1 ]] ; then
@@ -128,7 +128,7 @@ else
 	fi
 	if [[ -s ${1}.html ]] ; then
 		cat ${1}.html | tok | tr '[[:upper:]]' '[[:lower:]]' | grep -Ev "\-\-|[[:lower:]]+-[[:lower:]]+-[[:lower:]]+|^[[:digit:]]+|^-|^_|^-[[:digit:]]|^x|^[[:lower:]]+[[:upper:]]|[[:upper:]]+[[:lower:]]+[[:upper:]]+|_|[[:upper:]]+[[:digit:]]+|[[:lower:]]+[[:digit:]]+[[:lower:]]*|[[:upper:]]+[[:digit:]][[:digit:]]+[[:lower:]]*|[[:alpha:]]+-[[:alpha:]]+-|^[[:digit:]]+" | grep .. | sort -u  | anew -q ${1}-words 
-		#comm -13 <enter_path_to_rfc-words_here> ${1}-words | anew -q ${1}.generic-wordlist.txt
+		#comm -13 <path/to/rfc-words/here> ${1}-words | anew -q ${1}.generic-wordlist.txt
 		echo -e "${GREEN}[+] $(cat ${1}.generic-wordlist.txt | wc -l) Generic-words generated! :D"
 		cat ${1}.generic-wordlist.txt | anew -q ${1}.paths-wordlist.txt
 		rm ${1}-words 
