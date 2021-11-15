@@ -27,5 +27,7 @@ curl https://tools.ietf.org/html/rfc1866 -o rfc.html > /dev/null 2>&1
 cat rfc.html | tok | tr '[[:upper:]]' '[[:lower:]]' | sort -u > rfc-words
 rm rfc.html
 printf "\n"
-echo -e "${GOLD}$(pwd)/rfc-words"
-echo -e "${GREY}[+] [IMPORTANT] Now add the above path ^ of rfc-words' to http://wordlistWeaver.sh: Line number -> 131"
+test=$(pwd)/rfc-words
+sed -i "s#XXXX#${test}#g" wordlistWeaver.sh
+#echo -e "${GREY}[+] [IMPORTANT] Now add the above path ^ of rfc-words' to http://wordlistWeaver.sh: Line number -> 131"
+echo -e "${GREEN}[+] You're all set!
