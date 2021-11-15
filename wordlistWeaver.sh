@@ -128,7 +128,7 @@ else
 	fi
 	if [[ -s ${1}.html ]] ; then
 		cat ${1}.html | tok | tr '[[:upper:]]' '[[:lower:]]' | grep -Ev "\-\-|[[:lower:]]+-[[:lower:]]+-[[:lower:]]+|^[[:digit:]]+|^-|^_|^-[[:digit:]]|^x|^[[:lower:]]+[[:upper:]]|[[:upper:]]+[[:lower:]]+[[:upper:]]+|_|[[:upper:]]+[[:digit:]]+|[[:lower:]]+[[:digit:]]+[[:lower:]]*|[[:upper:]]+[[:digit:]][[:digit:]]+[[:lower:]]*|[[:alpha:]]+-[[:alpha:]]+-|^[[:digit:]]+" | grep .. | sort -u  | anew -q ${1}-words 
-		#comm -13 <path/to/rfc-words/here> ${1}-words | anew -q ${1}.generic-wordlist.txt
+		comm -13 XXXX ${1}-words | anew -q ${1}.generic-wordlist.txt
 		echo -e "${GREEN}[+] $(cat ${1}.generic-wordlist.txt | wc -l) Generic-words generated! :D"
 		cat ${1}.generic-wordlist.txt | anew -q ${1}.paths-wordlist.txt
 		rm ${1}-words 
