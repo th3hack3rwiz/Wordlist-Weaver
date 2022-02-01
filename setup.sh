@@ -5,7 +5,7 @@ GREEN='\e[38;5;149m'
 echo -e "${GREY}${BOLD}$(figlet -t -f slant Welcome to)" ; echo -e "${GOLD}${BOLD}$(figlet -t -f script Wordlist-Weaver!)"
 echo -e "\033[0;37m\e[1m\t\t\t\t\t\t  ${GREY}${BOLD}© Created By: th3hack3rwiz\n"
 echo -e "${GREEN}[+] Building gau"
-GO111MODULE=on go get -u -v github.com/lc/gau > /dev/null 2>&1
+GO111MODULE=on go install -v github.com/lc/gau@latest > /dev/null 2>&1
 git clone https://github.com/tomnomnom/hacks > /dev/null 2>&1
 cd hacks/tok
 echo -e "${GREEN}[+] Building tok"
@@ -30,4 +30,4 @@ printf "\n"
 test=$(pwd)/rfc-words
 sed -i "s#XXXX#${test}#g" wordlistWeaver.sh
 #echo -e "${GREY}[+] [IMPORTANT] Now add the above path ^ of rfc-words' to http://wordlistWeaver.sh: Line number -> 131"
-echo -e "${GREEN}[+] You're all set!
+echo -e "${GREEN}[+] You're all set!"
