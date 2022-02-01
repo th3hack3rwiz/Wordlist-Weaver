@@ -16,7 +16,7 @@ echo -e "${GREEN}[+] Building unfurl"
 go build
 cp unfurl $(echo $GOPATH)/bin/unfurl
 echo -e "${GREEN}[+] Building anew"
-go get -u github.com/tomnomnom/anew
+go install -v github.com/tomnomnom/anew@latest
 cd ../waybackurls
 echo -e "${GREEN}[+] Building waybackurls"
 go build
