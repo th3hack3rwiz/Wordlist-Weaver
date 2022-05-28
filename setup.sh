@@ -7,7 +7,10 @@ echo -e "\033[0;37m\e[1m\t\t\t\t\t\t  ${GREY}${BOLD}© Created By: th3hack3rwiz\
 echo -e "${GREEN}[+] Building gau"
 GO111MODULE=on go install -v github.com/lc/gau@latest > /dev/null 2>&1
 git clone https://github.com/tomnomnom/hacks > /dev/null 2>&1
-cd hacks/tok
+cd hacks
+go mod init .git/config
+go mod tidy
+cd tok
 echo -e "${GREEN}[+] Building tok"
 go build
 cp tok $(echo $GOPATH)/bin/tok 
